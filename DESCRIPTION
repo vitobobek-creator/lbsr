@@ -1,0 +1,38 @@
+Package: lbsr
+Type: Package
+Title: Legacy Behavioural Survey Reconstruction Toolkit
+Version: 0.5.0
+Authors@R: c(
+    person("Vito", "Bobek", role = c("aut", "cre"),
+           email = "vito.bobek@guest.arnes.si"),
+    person("Tatjana", "Horvat", role = "aut")
+    )
+Description: Provides auditable project structures, evidence provenance,
+    coding-book import, schema validation, sample-size diagnostics, evidence
+    conflict detection, constraint classification, feasibility assessment,
+    seed-controlled univariate and multivariate synthetic reconstruction,
+    frequency and group calibration, reliability estimation, multidimensional
+    fidelity scoring, reconstruction ensembles, assumption-sensitivity
+    analysis, uncertainty summaries, reproducible report generation, and
+    append-only methodological decisions for
+    reconstructing legacy behavioural survey evidence. The package separates
+    documentary fidelity from methodological validity and never represents
+    synthetic analytical reconstructions as recovered historical respondents.
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 4.2.0)
+Imports:
+    digest,
+    jsonlite,
+    readxl,
+    tools,
+    utils
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    withr
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+RoxygenNote: 7.3.2
