@@ -1,0 +1,42 @@
+---
+title: "LBSR Phases 2–3: Evidence ingestion and diagnostics"
+output: html_document
+vignette: >
+  %\VignetteIndexEntry{LBSR Phases 2–3: Evidence ingestion and diagnostics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette documents the Phase 2–3 workflow. It intentionally stops before
+synthetic respondent generation.
+
+```{r, eval=FALSE}
+library(lbsr)
+project <- create_lbsr_project("rec_case", "REC legacy reconstruction", "Research team")
+project <- register_sources(project, "REC_reconstruction_master_coding_book.xlsx",
+                            "coding_book", "derived_primary_input")
+bundle <- import_coding_book("REC_reconstruction_master_coding_book.xlsx",
+                             project = project)
+validation_summary(bundle$validation)
+
+diagnostics <- run_lbsr_diagnostics(
+  bundle,
+  respondent_n = 66,
+  claimed_item_counts = c(28, 62)
+)
+print(diagnostics)
+
+project <- record_decision(
+  project,
+  issue_id = "CON-COUNT-001",
+  actor = "Methodological owner",
+  alternatives = "28 original items | 62 original items | 28-item reduced model",
+  decision = "Retain 62 as the source inventory; investigate 28 as a reduced model",
+  rationale = "The master coding book and thesis result tables contain 62 indicators."
+)
+```
+
+Warnings about stacked observations are expected in the canonical case because
+reported values such as 198 and 396 represent pooled item responses rather than
+respondent counts. Such warnings document the legacy evidence; they do not
+convert 198 into a respondent sample size.

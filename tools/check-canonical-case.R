@@ -1,0 +1,17 @@
+args <- commandArgs(trailingOnly = TRUE)
+if (length(args) != 1L) stop("Usage: Rscript tools/check-canonical-case.R path/to/master.xlsx")
+library(lbsr)
+bundle <- import_coding_book(args[[1]], strict = TRUE)
+stopifnot(nrow(bundle$items) == 62L)
+stopifnot(length(unique(paste(bundle$items$tpb_block_code,
+                              bundle$items$dimension_code, sep = "_"))) == 16L)
+print(bundle)
+print(bundle$validation)
+diagnostics <- run_lbsr_diagnostics(
+  bundle, respondent_n = 66, claimed_item_counts = c(28, 62)
+)
+print(diagnostics)
+stopifnot(any(diagnostics$sample_sizes$count_type == "stacked_item_responses"))
+stopifnot(any(diagnostics$conflicts$conflict_type == "inventory_item_count"))
+stopifnot("LBSR-B001" %in% diagnostics$issues$code)
+cat("Canonical coding-book acceptance import completed.\n")

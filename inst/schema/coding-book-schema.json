@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LBSR master coding-book contract",
+  "version": "1.0",
+  "required_tables": [
+    "items",
+    "composite_frequencies",
+    "group_means",
+    "hypothesis_tests",
+    "reconstruction_plan"
+  ],
+  "canonical_case": {
+    "respondents": 66,
+    "items": 62,
+    "construct_dimension_composites": 16,
+    "scale_min": 1,
+    "scale_max": 5
+  }
+}
+

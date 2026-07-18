@@ -1,0 +1,5 @@
+composite_code,hypothesis,tpb_block_code,tpb_block,dimension_code,dimension,pv_ownership_group,mean,n,sd,internal_source_location
+ATT_TEC,H1,ATT,Attitude,TEC,Technical,NE,3.55,174,0.896,technical calculation table 4
+ATT_TEC,H1,ATT,Attitude,TEC,Technical,DA,4.29,24,0.624,technical calculation table 4
+ATT_TEC,H1,ATT,Attitude,TEC,Technical,Total,3.64,198,0.900,technical calculation table 4
+

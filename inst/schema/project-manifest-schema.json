@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LBSR project manifest",
+  "type": "object",
+  "required": [
+    "manifest_version", "project_id", "title", "owner", "status",
+    "data_status", "created_at", "updated_at", "directories", "sources"
+  ],
+  "properties": {
+    "manifest_version": {"const": "1.0"},
+    "project_id": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "owner": {"type": "string", "minLength": 1},
+    "status": {"type": "string"},
+    "data_status": {"type": "string"},
+    "sources": {"type": "array"}
+  }
+}
+

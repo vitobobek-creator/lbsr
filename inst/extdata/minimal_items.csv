@@ -1,0 +1,5 @@
+code,hypothesis,tpb_block_code,tpb_block,dimension_code,dimension,item_no,original_item_wording,n,mean,sd,source_table,internal_source_location,reconstruction_status
+ATT_TEC1,H1,ATT,Attitude,TEC,Technical,1,Technical item one,66,3.55,0.898,Table 24,thesis table 24,Confirmed by calculation document
+ATT_TEC2,H1,ATT,Attitude,TEC,Technical,2,Technical item two,66,3.58,0.878,Table 24,thesis table 24,Confirmed by calculation document
+ATT_TEC3,H1,ATT,Attitude,TEC,Technical,3,Technical item three,66,3.73,0.869,Table 24,thesis table 24,Confirmed by calculation document
+

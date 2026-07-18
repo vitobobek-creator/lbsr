@@ -1,0 +1,2 @@
+decision_id,issue_id,created_at,actor,alternatives,decision,rationale,evidence_ids,impact,approval_status,supersedes,software_version,record_hash,previous_record_hash
+DEC-001,,,,,,,,,proposed,,0.2.0,,GENESIS
