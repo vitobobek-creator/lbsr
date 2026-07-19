@@ -2,7 +2,7 @@ read_lbsr_sheet <- function(file, sheet) {
   x <- as.data.frame(readxl::read_excel(file, sheet = sheet, .name_repair = "minimal"),
                      stringsAsFactors = FALSE)
   names(x) <- normalize_lbsr_names(names(x))
-  x <- x[, !grepl("^\.\.\.[0-9]+$|^$", names(x)), drop = FALSE]
+    x <- x[, !grepl("^\\.\\.\\.[0-9]+$|^$", names(x)), drop = FALSE]
   x
 }
 
