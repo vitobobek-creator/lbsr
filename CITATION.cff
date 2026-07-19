@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use lbsr, please cite the software and the associated methodological publication."
 title: "lbsr: Legacy Behavioural Survey Reconstruction Toolkit"
-version: 0.5.0
+version: 0.5.1
 type: software
 authors:
   - family-names: Bobek
