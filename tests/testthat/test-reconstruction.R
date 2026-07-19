@@ -12,7 +12,7 @@ test_that("reconstruction is reproducible, bounded, and labelled synthetic", {
   a <- reconstruct_synthetic(x, 66, seed = 42, group_sizes = c(non_owner = 58, owner = 8))
   b <- reconstruct_synthetic(x, 66, seed = 42, group_sizes = c(non_owner = 58, owner = 8))
   expect_identical(a$data, b$data)
-  expect_equal(table(a$data$group), c(non_owner = 58, owner = 8))
+  expect_equal(as.integer(table(a$data$group)), c(58L, 8L))
   expect_true(all(a$data$ATT_TEC1 %in% 1:5))
   expect_identical(a$metadata$data_status, "synthetic_analytical_reconstruction")
   expect_false(a$metadata$historical_respondents_recovered)
