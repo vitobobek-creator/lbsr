@@ -1,7 +1,7 @@
 Package: lbsr
 Type: Package
 Title: Legacy Behavioural Survey Reconstruction Toolkit
-Version: 0.5.0
+Version: 0.5.1
 Authors@R: c(
     person("Vito", "Bobek", role = c("aut", "cre"),
            email = "vito.bobek@guest.arnes.si"),
