@@ -46,7 +46,7 @@ diagnose_sample_sizes <- function(x, respondent_n = NULL,
                                              (is_total && inferred == respondent_n))) {
       type <- "stacked_item_responses"; confidence <- "high"
       issues <- add_finding(issues, "LBSR-N001", "MAJOR", "group_means", "n", i,
-        paste0("Reported N=", n, " equals ", inferred, " respondents × ", k,
+        paste0("Reported N=", n, " equals ", inferred, " respondents x ", k,
                " items for ", merged$composite_code[[i]], "."))
     } else if (n == respondent_n) {
       type <- "respondents"; confidence <- "high"
