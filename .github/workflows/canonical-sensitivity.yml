@@ -1,0 +1,70 @@
+name: Canonical R sensitivity analysis
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  canonical-sensitivity:
+    name: Run canonical 45-run analysis
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out LBSR v0.5.1
+        uses: actions/checkout@v4
+        with:
+          ref: v0.5.1
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: release
+          use-public-rspm: true
+
+      - name: Install package dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          dependencies: '"all"'
+          cache-version: 1
+
+      - name: Install LBSR v0.5.1
+        shell: bash
+        run: R CMD INSTALL .
+
+      - name: Download deposited canonical dataset
+        shell: bash
+        run: |
+          curl -L \
+            "https://zenodo.org/records/21468793/files/LBSR_illustrative_case_dataset_v1.0.zip?download=1" \
+            -o canonical-dataset.zip
+          unzip canonical-dataset.zip -d canonical-dataset
+          test -f canonical-dataset/LBSR_illustrative_case_dataset_v1.0/coding_book/reconstructed_master_coding_book.xlsx
+
+      - name: Run canonical 45-run sensitivity analysis
+        shell: bash
+        run: |
+          Rscript tools/run-canonical-sensitivity.R \
+            canonical-dataset/LBSR_illustrative_case_dataset_v1.0/coding_book/reconstructed_master_coding_book.xlsx \
+            authoritative-r-output
+
+      - name: List generated outputs
+        shell: bash
+        run: |
+          find authoritative-r-output -maxdepth 1 -type f -print
+          test -f authoritative-r-output/LBSR_sensitivity_report.md
+          test -f authoritative-r-output/run_registry.csv
+          test -f authoritative-r-output/target_stability.csv
+          test -f authoritative-r-output/parameter_effects.csv
+          test -f authoritative-r-output/sensitivity_ensemble.rds
+          test -f authoritative-r-output/selected_synthetic_reconstruction.csv
+
+      - name: Upload authoritative R results
+        uses: actions/upload-artifact@v4
+        with:
+          name: lbsr-v0.5.1-canonical-r-sensitivity-results
+          path: authoritative-r-output/
+          if-no-files-found: error
+          retention-days: 90
